@@ -36,7 +36,9 @@ class kbe_Article_Widget extends WP_Widget {
         
         //=======> widget body
         echo $before_widget;
-        echo '<div class="kbe_widget kbe_widget_article">';
+        echo '<div class="support_widget row">';
+        echo '<div class="col-xs-12">';
+
         
                 if($kbe_widget_article_title){
                     echo '<h2>'.$kbe_widget_article_title.'</h2>';
@@ -63,7 +65,7 @@ class kbe_Article_Widget extends WP_Widget {
                 $kbe_widget_articles = new WP_Query($kbe_widget_article_args);
                 if($kbe_widget_articles->have_posts()) :
             ?>
-                <ul>
+                <ul class="list-unstyled">
             <?php
                     while($kbe_widget_articles->have_posts()) :
                         $kbe_widget_articles->the_post();
@@ -82,6 +84,7 @@ class kbe_Article_Widget extends WP_Widget {
                 
                 wp_reset_query();
                 
+        echo "</div>";
         echo "</div>";
         echo $after_widget;
     }

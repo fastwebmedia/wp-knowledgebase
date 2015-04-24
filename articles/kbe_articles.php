@@ -62,26 +62,26 @@ add_action( 'init', 'kbe_taxonomies', 0 );
 function kbe_taxonomies() {
     // Add new taxonomy, make it hierarchical (like categories)
     $labels = array(
-        'name'              => 	__( 'Knowledgebase Category', 'kbe'),
-        'singular_name'     => 	__( 'Knowledgebase Category', 'kbe' ),
-        'search_items'      => 	__( 'Search Knowledgebase Category', 'kbe' ),
-        'all_items'         => 	__( 'All Knowledgebase Categories', 'kbe' ),
-        'parent_item'       => 	__( 'Parent Knowledgebase Category', 'kbe' ),
-        'parent_item_colon' => 	__( 'Parent Knowledgebase Category:', 'kbe' ),
-        'edit_item'         => 	__( 'Edit Knowledgebase Category', 'kbe' ),
-        'update_item'       => 	__( 'Update Knowledgebase Category', 'kbe' ),
-        'add_new_item'      => 	__( 'Add New Knowledgebase Category', 'kbe' ),
-        'new_item_name'     => 	__( 'New Knowledgebase Category Name', 'kbe' ),
+        'name'              => 	__( KBE_TITLE. ' Category', 'kbe'),
+        'singular_name'     => 	__( KBE_TITLE. ' Category', 'kbe' ),
+        'search_items'      => 	__( 'Search '.KBE_TITLE.' Category', 'kbe' ),
+        'all_items'         => 	__( 'All '.KBE_TITLE.' Categories', 'kbe' ),
+        'parent_item'       => 	__( 'Parent '.KBE_TITLE.' Category', 'kbe' ),
+        'parent_item_colon' => 	__( 'Parent '.KBE_TITLE.' Category:', 'kbe' ),
+        'edit_item'         => 	__( 'Edit '.KBE_TITLE.' Category', 'kbe' ),
+        'update_item'       => 	__( 'Update '.KBE_TITLE.' Category', 'kbe' ),
+        'add_new_item'      => 	__( 'Add New '.KBE_TITLE.' Category', 'kbe' ),
+        'new_item_name'     => 	__( 'New '.KBE_TITLE.' Category Name', 'kbe' ),
 	'menu_name'         => 	__( 'Categories', 'kbe' )
     ); 	
 	
     register_taxonomy( 'kbe_taxonomy', array( 'kbe_knowledgebase' ), array(
         'hierarchical'      => 	true,
         "labels"            => 	$labels,
-        "singular_label"    => 	__( 'Knowledgebase Category', 'kbe'),
+        "singular_label"    => 	__( KBE_TITLE . ' Category', 'kbe'),
         'show_ui'           => 	true,
         'query_var'         => 	true,
-        'rewrite'           => 	array( 'slug' => 'knowledgebase_category', 'with_front' => true )
+        'rewrite'           => 	array( 'slug' => 'support-category', 'with_front' => true )
     ));
     flush_rewrite_rules();
 }
@@ -90,14 +90,14 @@ add_action( 'init', 'kbe_custom_tags', 0 );
 function kbe_custom_tags() {
 	
     $labels = array(
-                    'name' 		=>  __( 'Knowledgebase Tags', 'kbe' ),
-                    'singular_name' 	=>  __( 'Knowledgebase Tag', 'kbe' ),
-                    'search_items' 	=>  __( 'Search Knowledgebase Tags', 'kbe' ),
-                    'all_items' 	=>  __( 'All Knowledgebase Tags', 'kbe' ),
-                    'edit_item' 	=>  __( 'Edit Knowledgebase Tag', 'kbe' ),
-                    'update_item' 	=>  __( 'Update Knowledgebase Tag', 'kbe' ),
-                    'add_new_item' 	=>  __( 'Add New Knowledgebase Tag', 'kbe' ),
-                    'new_item_name' 	=>  __( 'New Knowledgebase Tag Name', 'kbe' ),
+                    'name' 		=>  __( KBE_TITLE. ' Tags', 'kbe' ),
+                    'singular_name' 	=>  __( KBE_TITLE.' Tag', 'kbe' ),
+                    'search_items' 	=>  __( 'Search '.KBE_TITLE.' Tags', 'kbe' ),
+                    'all_items' 	=>  __( 'All '.KBE_TITLE.' Tags', 'kbe' ),
+                    'edit_item' 	=>  __( 'Edit '.KBE_TITLE.' Tag', 'kbe' ),
+                    'update_item' 	=>  __( 'Update '.KBE_TITLE.' Tag', 'kbe' ),
+                    'add_new_item' 	=>  __( 'Add New '.KBE_TITLE.' Tag', 'kbe' ),
+                    'new_item_name' 	=>  __( 'New '.KBE_TITLE.' Tag Name', 'kbe' ),
                     'menu_name' 	=>  __( 'Tags', 'kbe' )
             );
 
@@ -108,7 +108,7 @@ function kbe_custom_tags() {
                             'labels'        =>  $labels,
                             'show_ui'       =>  true,
                             'query_var'     =>  true,
-                            'rewrite'       =>  array('slug' => 'knowledgebase_tags', 'with_front' => true),
+                            'rewrite'       =>  array('slug' => 'support-tags', 'with_front' => true),
                         )
     );
     flush_rewrite_rules();
