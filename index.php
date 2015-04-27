@@ -381,7 +381,7 @@ function kbe_breadcrumbs(){
         ?>
         <ul class="breadcrumb">
             <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_TITLE ,'kbe'); ?></a></li>
-            <li class="active"<?php echo $kbe_search_word; ?></li>
+            <li class="active">Search Results</li>
         </ul>
     <?php
     }elseif(is_single()){
