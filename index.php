@@ -314,7 +314,7 @@ function kbe_search_form(){
     <div id="live-search">
         <div class="kbe_search_field">
             <form role="search" method="get" id="searchform" class="clearfix" action="<?php echo home_url( '/' ); ?>" autocomplete="off">
-                <input class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" type="text" onfocus="if (this.value == '<?php _e("Search Articles...", "kbe") ?>') {this.value = '';}" onblur="if (this.value == '')  {this.value = '<?php _e("Search Articles...", "kbe") ?>';}" value="<?php _e("Search Articles...", "kbe") ?>" name="s" id="s" />
+                <input class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" type="text" onfocus="if (this.value == '<?php _e("Search The ".KBE_TITLE, "kbe") ?>') {this.value = '';}" onblur="if (this.value == '')  {this.value = '<?php _e("Search The ".KBE_TITLE, "kbe") ?>';}" value="<?php _e("Search The ".KBE_TITLE, "kbe") ?>" name="s" id="s" />
                 <button type="submit"><i class="fa fa-search"></i></button>
                 <!--<ul id="kbe_search_dropdown"></ul>-->
                 <input type="hidden" name="post_type" value="kbe_knowledgebase" />
