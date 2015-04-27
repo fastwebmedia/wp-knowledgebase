@@ -427,14 +427,14 @@ function register_kbe_shortcodes(){
 
 //=========>  KBE Short Content
 function kbe_short_content($limit) {
-    $content = get_the_content();
+    $content = wp_strip_all_tags(get_the_content());
     $pad="&hellip;";
 
     if(strlen($content) <= $limit) {
-        echo wp_strip_all_tags($content);
+        echo $content;
     } else {
         $content = substr($content, 0, $limit) . $pad;
-        echo wp_strip_all_tags($content);
+        echo $content;
     }
 }
 
