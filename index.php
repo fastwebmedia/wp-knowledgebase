@@ -3,7 +3,7 @@
   Plugin Name: FWM WP Knowledgebase
   Plugin URI: https://github.com/fastwebmedia/wp-knowledgebase
   Description: Simple and flexible knowledgebase plugin for WordPress
-  Author: Enigma Plugins
+  Author: Fast Web Media
   Version: 2.0.0
   Author URI: http://www.fastwebmedia.com
  */
