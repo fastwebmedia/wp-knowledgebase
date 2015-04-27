@@ -236,9 +236,9 @@ function load_all_jquery() {
 function st_add_live_search () {
     ?>
     <script type="text/javascript">
-        jQuery(document).ready(function() {
-            var kbe = jQuery('#live-search #s').val();
-            jQuery('#live-search #s').liveSearch({url: '<?php echo home_url(); ?>/?ajax=on&post_type=kbe_knowledgebase&s='});
+        $(document).ready(function() {
+            var kbe = $('#live-search #s').val();
+            $('#live-search #s').liveSearch({url: '<?php echo home_url(); ?>/?ajax=on&post_type=kbe_knowledgebase&s='});
         });
     </script>
 <?php
@@ -364,7 +364,6 @@ function kbe_breadcrumbs(){
 
         ?>
         <ul class="breadcrumb">
-            <li><a href="<?php echo home_url(); ?>"><?php _e('Home','kbe'); ?></a></li>
             <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_TITLE ,'kbe'); ?></a></li>
             <li><?php echo $kbe_bc_name; ?></li>
         </ul>
@@ -373,7 +372,6 @@ function kbe_breadcrumbs(){
         $kbe_bc_tag_name = get_queried_object()->name;
         ?>
         <ul class="breadcrumb">
-            <li><a href="<?php echo home_url(); ?>"><?php _e('Home','kbe'); ?></a></li>
             <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_TITLE ,'kbe'); ?></a></li>
             <li><?php echo $kbe_bc_tag_name; ?></li>
         </ul>
@@ -382,7 +380,6 @@ function kbe_breadcrumbs(){
         $kbe_search_word = $_GET['s'];
         ?>
         <ul class="breadcrumb">
-            <li><a href="<?php echo home_url(); ?>"><?php _e('Home','kbe'); ?></a></li>
             <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_TITLE ,'kbe'); ?></a></li>
             <li class="active"<?php echo $kbe_search_word; ?></li>
         </ul>
@@ -391,7 +388,6 @@ function kbe_breadcrumbs(){
         $kbe_bc_term = get_the_terms( $post->ID , KBE_POST_TAXONOMY );
         ?>
         <ul class="breadcrumb">
-            <li><a href="<?php echo home_url(); ?>"><?php _e('Home','kbe'); ?></a></li>
             <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_TITLE ,'kbe'); ?></a></li>
             <?php
             foreach($kbe_bc_term as $kbe_tax_term){
@@ -412,7 +408,6 @@ function kbe_breadcrumbs(){
     }else{
         ?>
         <ul class="breadcrumb">
-            <li><a href="<?php echo home_url(); ?>"><?php _e('Home','kbe'); ?></a></li>
             <li class="active"><?php _e(KBE_TITLE ,'kbe'); ?></li>
         </ul>
     <?php
@@ -436,10 +431,10 @@ function kbe_short_content($limit) {
     $pad="&hellip;";
 
     if(strlen($content) <= $limit) {
-        echo $content;
+        echo wp_strip_all_tags($content);
     } else {
         $content = substr($content, 0, $limit) . $pad;
-        echo $content;
+        echo wp_strip_all_tags($content);
     }
 }
 
