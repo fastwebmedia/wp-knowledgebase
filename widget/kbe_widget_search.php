@@ -15,13 +15,13 @@ class kbe_Search_Widget extends WP_Widget {
     //=======> Widget setup
     function kbe_Search_Widget() {
         /* Widget settings. */
-	$widget_ops = array( 'classname' => 'kbe', 'description' => __('WP Knowledgebase search widget', 'kbe') );
+	$widget_ops = array( 'classname' => 'kbe', 'description' => __('WP '.KBE_PLUGIN_TITLE.' search widget', 'kbe') );
         
         /* Widget control settings. */
 	$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'kbe_search_widget' );
         
 	/* Create the widget. */
-	$this->WP_Widget( 'kbe_search_widget', __('Knowledgebase Search', 'kbe'), $widget_ops, $control_ops );
+	$this->WP_Widget( 'kbe_search_widget', __(KBE_PLUGIN_TITLE.' Search', 'kbe'), $widget_ops, $control_ops );
     }
     
   //=======> How to display the widget on the screen.
@@ -40,7 +40,7 @@ class kbe_Search_Widget extends WP_Widget {
                 }
     ?>
         <form role="search" method="get" id="searchform" class="clearfix" action="<?php echo home_url( '/' ); ?>" autocomplete="off">
-            <input type="text" onfocus="if (this.value == '<?php _e("Search Articles...", "kbe") ?>') {this.value = '';}" onblur="if (this.value == '')  {this.value = '<?php _e("Search Articles...", "kbe") ?>';}" value="<?php _e("Search Articles...", "kbe") ?>" name="s" id="s" />
+            <input type="text" onfocus="if (this.value == '<?php _e("Search ".KBE_PLUGIN_TITLE, "kbe") ?>') {this.value = '';}" onblur="if (this.value == '')  {this.value = '<?php _e("Search ".KBE_PLUGIN_TITLE, "kbe") ?>';}" value="<?php _e("Search ".KBE_PLUGIN_TITLE, "kbe") ?>" name="s" id="s" />
             <input type="hidden" name="post_type" value="kbe_knowledgebase" />
         </form>
     <?php

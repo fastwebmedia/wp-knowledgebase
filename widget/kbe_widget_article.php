@@ -15,13 +15,13 @@ class kbe_Article_Widget extends WP_Widget {
     //=======> Widget setup
     function kbe_Article_Widget() {
         /* Widget settings. */
-	$widget_ops = array( 'classname' => 'kbe', 'description' => __('WP Knowledgebase article widget to show articles on the site', 'kbe') );
+	$widget_ops = array( 'classname' => 'kbe', 'description' => __('WP '.KBE_PLUGIN_TITLE.' article widget to show articles on the site', 'kbe') );
         
         /* Widget control settings. */
 	$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'kbe_article_widget' );
         
 	/* Create the widget. */
-	$this->WP_Widget( 'kbe_article_widget', __('Knowledgebase Article', 'kbe'), $widget_ops, $control_ops );
+	$this->WP_Widget( 'kbe_article_widget', __(KBE_PLUGIN_TITLE.' Article', 'kbe'), $widget_ops, $control_ops );
     }
     
     //=======> How to display the widget on the screen.

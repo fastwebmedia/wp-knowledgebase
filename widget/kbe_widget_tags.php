@@ -15,13 +15,13 @@ class kbe_Tags_Widget extends WP_Widget {
     //=======> Widget setup
     function kbe_Tags_Widget() {
         /* Widget settings. */
-	$widget_ops = array( 'classname' => 'kbe', 'description' => __('WP Knowledgebase article widget to show tags on the site', 'kbe') );
+	$widget_ops = array( 'classname' => 'kbe', 'description' => __('WP '.KBE_PLUGIN_TITLE.' article widget to show tags on the site', 'kbe') );
         
         /* Widget control settings. */
 	$control_ops = array( 'width' => 300, 'height' => 350, 'id_base' => 'kbe_tags_widgets' );
         
 	/* Create the widget. */
-	$this->WP_Widget( 'kbe_tags_widgets', __('Knowledgebase Tags', 'kbe'), $widget_ops, $control_ops );
+	$this->WP_Widget( 'kbe_tags_widgets', __(KBE_PLUGIN_TITLE.' Tags', 'kbe'), $widget_ops, $control_ops );
     }
     
     //=======> How to display the widget on the screen.

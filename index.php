@@ -11,7 +11,20 @@
 //=========> Hide all Reporting Errors
 error_reporting(0);
 
-define('KBE_TITLE', 'Support Centre');
+//  define options values
+define('KBE_ARTICLE_QTY', get_option('kbe_article_qty'));
+define('KBE_PLUGIN_TITLE', get_option('kbe_plugin_title', 'Support Centre'));
+define('KBE_PLUGIN_SLUG', get_option('kbe_plugin_slug'));
+define('KBE_SEARCH_SETTING', get_option('kbe_search_setting'));
+define('KBE_BREADCRUMBS_SETTING', get_option('kbe_breadcrumbs_setting'));
+define('KBE_SIDEBAR_HOME', get_option('kbe_sidebar_home'));
+define('KBE_SIDEBAR_INNER', get_option('kbe_sidebar_inner'));
+define('KBE_COMMENT_SETTING', get_option('kbe_comments_setting'));
+define('KBE_BG_COLOR', get_option('kbe_bgcolor'));
+define('KBE_LINK_STRUCTURE', get_option('permalink_structure'));
+define('KBE_POST_TYPE', 'kbe_knowledgebase');
+define('KBE_POST_TAXONOMY', 'kbe_taxonomy');
+define('KBE_POST_TAGS', 'kbe_tags');
 
 
 //=========> Create language folder
@@ -44,7 +57,7 @@ require "widget/kbe_widget_tags.php";
 //=========> Create Hooks for WP Knowledgebase
 function wp_kbe_hooks() {
     global $wpdb;
-    /*Creat "term_order" Field in "wp_terms" Table for sortable order*/
+    /* Create "term_order" Field in "wp_terms" Table for sortable order */
     $term_order_qry = $wpdb->query("SHOW COLUMNS FROM $wpdb->terms LIKE 'terms_order'");
     if($term_order_qry == 0){
         $wpdb->query("ALTER TABLE $wpdb->terms ADD `terms_order` INT(4) NULL DEFAULT '0'");
@@ -73,32 +86,32 @@ function wp_kbe_hooks() {
         $table_posts	=	$wpdb->prefix.'posts';
 
         $data_posts = array(
-            'post_author'       =>  $user_id,
-            'post_date'         =>  $now,
-            'post_date_gmt'     =>  $now_gmt,
-            'post_content'      =>  '[kbe_knowledgebase]',
-            'post_title'        =>  KBE_TITLE,
-            'post_excerpt'      =>  '',
-            'post_status'       =>  'publish',
-            'comment_status'         =>  'closed',
-            'ping_status'       =>  'closed',
-            'post_password'      =>  '',
-            'post_name'        =>  'help-centre',
-            'to_ping'      =>  '',
-            'pinged'       =>  '',
-            'post_modified'         =>  $now,
-            'post_modified_gmt'     =>  $now_gmt,
-            'post_content_filtered'      =>  '',
-            'post_parent'        =>  '0',
-            'guid'      =>  $guid,
-            'menu_order'       =>  '0',
-            'post_type'         =>  'page',
-            'post_mime_type'     =>  '',
-            'comment_count'      =>  '0',
+            'post_author'           => $user_id,
+            'post_date'             => $now,
+            'post_date_gmt'         => $now_gmt,
+            'post_content'          => '[kbe_knowledgebase]',
+            'post_title'            => KBE_PLUGIN_TITLE,
+            'post_excerpt'          => '',
+            'post_status'           => 'publish',
+            'comment_status'        => 'closed',
+            'ping_status'           => 'closed',
+            'post_password'         => '',
+            'post_name'             => 'support-centre',
+            'to_ping'               => '',
+            'pinged'                => '',
+            'post_modified'         => $now,
+            'post_modified_gmt'     => $now_gmt,
+            'post_content_filtered' => '',
+            'post_parent'           => '0',
+            'guid'                  => $guid,
+            'menu_order'            => '0',
+            'post_type'             => 'page',
+            'post_mime_type'        => '',
+            'comment_count'         => '0',
         );
         $wpdb->insert($table_posts,$data_posts) or die(mysql_error());
 
-        //  Insert a page template for knowlwdgebase
+        //  Insert a page template for knowledgebase
         $tempTableSql = "Select post_content, ID From ".$kbe_pre."posts Where post_content Like '%[kbe_knowledgebase]%' And post_type <> 'revision'";
         $tempTableQry = mysql_query($tempTableSql);
         $tempTableRow = mysql_fetch_array($tempTableQry);
@@ -125,7 +138,7 @@ function wp_kbe_hooks() {
 
         $kbe_slug_data = array(
             'option_name'   => 'kbe_plugin_slug',
-            'option_value'   => 'knowledgebase'
+            'option_value'   => 'support-centre'
         );
         $wpdb->insert($table_slug_option, $kbe_slug_data) or die(mysql_error());
     }
@@ -155,6 +168,7 @@ define( 'WP_KNOWLEDGEBASE', plugin_dir_url(__FILE__));
 //=========> Register plugin settings
 add_action('admin_init', 'kbe_register_settings');
 function kbe_register_settings() {
+    register_setting('kbe_settings_group', 'kbe_plugin_title');
     register_setting('kbe_settings_group', 'kbe_plugin_slug');
     register_setting('kbe_settings_group', 'kbe_article_qty');
     register_setting('kbe_settings_group', 'kbe_search_setting');
@@ -164,20 +178,6 @@ function kbe_register_settings() {
     register_setting('kbe_settings_group', 'kbe_comments_setting');
     register_setting('kbe_settings_group', 'kbe_bgcolor');
 }
-
-//  define options values
-define('KBE_ARTICLE_QTY', get_option('kbe_article_qty'));
-define('KBE_PLUGIN_SLUG', get_option('kbe_plugin_slug'));
-define('KBE_SEARCH_SETTING', get_option('kbe_search_setting'));
-define('KBE_BREADCRUMBS_SETTING', get_option('kbe_breadcrumbs_setting'));
-define('KBE_SIDEBAR_HOME', get_option('kbe_sidebar_home'));
-define('KBE_SIDEBAR_INNER', get_option('kbe_sidebar_inner'));
-define('KBE_COMMENT_SETTING', get_option('kbe_comments_setting'));
-define('KBE_BG_COLOR', get_option('kbe_bgcolor'));
-define('KBE_LINK_STRUCTURE', get_option('permalink_structure'));
-define('KBE_POST_TYPE', 'kbe_knowledgebase');
-define('KBE_POST_TAXONOMY', 'kbe_taxonomy');
-define('KBE_POST_TAGS', 'kbe_tags');
 
 $getSql = "Select ID From wp_posts Where post_content Like '%[kbe_knowledgebase]%' And post_type <> 'revision'";
 $getQry = mysql_query($getSql);
@@ -191,13 +191,6 @@ add_action('admin_menu', 'kbe_plugin_menu');
 function kbe_plugin_menu() {
     add_submenu_page('edit.php?post_type=kbe_knowledgebase', 'Order', 'Order', 'manage_options', 'kbe_order', 'wp_kbe_order');
     add_submenu_page('edit.php?post_type=kbe_knowledgebase', 'Settings', 'Settings', 'manage_options', 'kbe_options', 'wp_kbe_options');
-}
-
-//=========> Enqueue KBE Style file in header.php
-add_action('wp_head', 'kbe_article_style');
-function kbe_article_style(){
-    wp_register_style('kbe_theme_css', get_template_directory_uri().'/kbe_style.css');
-    wp_enqueue_style('kbe_theme_css');
 }
 
 add_action('wp_print_scripts', 'kbe_live_search');
@@ -293,14 +286,13 @@ if((!file_exists($kbe_style)) or (!file_exists($kbe_kbe))or
     copy($kbe_plugin_dir.'template/taxonomy-kbe_tags.php', KBE_THEME_DIR.'/taxonomy-kbe_tags.php');
     copy($kbe_plugin_dir.'template/kbe_comments.php', KBE_THEME_DIR.'/kbe_comments.php');
     copy($kbe_plugin_dir.'template/kbe_search.php', KBE_THEME_DIR.'/kbe_search.php');
-    copy($kbe_plugin_dir.'template/kbe_style.css', KBE_THEME_DIR.'/kbe_style.css');
 }
 
 //=========> Registering KBE widget area
 register_sidebar(array(
-    'name' => __('WP '.KBE_TITLE.' Sidebar','kbe'),
+    'name' => __('WP '.KBE_PLUGIN_TITLE.' Sidebar','kbe'),
     'id' => 'kbe_cat_widget',
-    'description' => __('WP '.KBE_TITLE.' sidebar area','kbe'),
+    'description' => __('WP '.KBE_PLUGIN_TITLE.' sidebar area','kbe'),
     'before_widget' => '',
     'after_widget' => '',
     'before_title' => '<h6>',
@@ -314,7 +306,7 @@ function kbe_search_form(){
     <div id="live-search">
         <div class="kbe_search_field">
             <form role="search" method="get" id="searchform" class="clearfix" action="<?php echo home_url( '/' ); ?>" autocomplete="off">
-                <input class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" type="text" onfocus="if (this.value == '<?php _e("Search The ".KBE_TITLE, "kbe") ?>') {this.value = '';}" onblur="if (this.value == '')  {this.value = '<?php _e("Search The ".KBE_TITLE, "kbe") ?>';}" value="<?php _e("Search The ".KBE_TITLE, "kbe") ?>" name="s" id="s" />
+                <input class="form-control col-xs-12 col-sm-12 col-md-12 col-lg-12" type="text" onfocus="if (this.value == '<?php _e("Search The ".KBE_PLUGIN_TITLE, "kbe") ?>') {this.value = '';}" onblur="if (this.value == '')  {this.value = '<?php _e("Search The ".KBE_PLUGIN_TITLE, "kbe") ?>';}" value="<?php _e("Search The ".KBE_PLUGIN_TITLE, "kbe") ?>" name="s" id="s" />
                 <button type="submit"><i class="fa fa-search"></i></button>
                 <!--<ul id="kbe_search_dropdown"></ul>-->
                 <input type="hidden" name="post_type" value="kbe_knowledgebase" />
@@ -364,7 +356,7 @@ function kbe_breadcrumbs(){
 
         ?>
         <ul class="breadcrumb">
-            <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_TITLE ,'kbe'); ?></a></li>
+            <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_PLUGIN_TITLE ,'kbe'); ?></a></li>
             <li><?php echo $kbe_bc_name; ?></li>
         </ul>
     <?php
@@ -372,15 +364,14 @@ function kbe_breadcrumbs(){
         $kbe_bc_tag_name = get_queried_object()->name;
         ?>
         <ul class="breadcrumb">
-            <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_TITLE ,'kbe'); ?></a></li>
+            <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_PLUGIN_TITLE ,'kbe'); ?></a></li>
             <li><?php echo $kbe_bc_tag_name; ?></li>
         </ul>
     <?php
     }elseif(strpos($url, '?s')){
-        $kbe_search_word = $_GET['s'];
         ?>
         <ul class="breadcrumb">
-            <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_TITLE ,'kbe'); ?></a></li>
+            <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_PLUGIN_TITLE ,'kbe'); ?></a></li>
             <li class="active">Search Results</li>
         </ul>
     <?php
@@ -388,7 +379,7 @@ function kbe_breadcrumbs(){
         $kbe_bc_term = get_the_terms( $post->ID , KBE_POST_TAXONOMY );
         ?>
         <ul class="breadcrumb">
-            <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_TITLE ,'kbe'); ?></a></li>
+            <li><a href="<?php echo home_url()."/".KBE_PLUGIN_SLUG; ?>"><?php _e(KBE_PLUGIN_TITLE ,'kbe'); ?></a></li>
             <?php
             foreach($kbe_bc_term as $kbe_tax_term){
                 ?>
@@ -408,7 +399,7 @@ function kbe_breadcrumbs(){
     }else{
         ?>
         <ul class="breadcrumb">
-            <li class="active"><?php _e(KBE_TITLE ,'kbe'); ?></li>
+            <li class="active"><?php _e(KBE_PLUGIN_TITLE ,'kbe'); ?></li>
         </ul>
     <?php
     }

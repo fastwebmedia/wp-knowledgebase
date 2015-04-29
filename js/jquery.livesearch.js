@@ -128,7 +128,7 @@ jQuery.fn.liveSearch = function (conf) {
 			.focus(function () {
 				if (this.value !== '') {
 					// Perform a new search if there are no search results
-					if (liveSearch.html() == '') {
+					if (liveSearch.html() === '') {
 						this.lastValue = '';
 						input.keyup();
 					}

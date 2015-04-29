@@ -43,7 +43,7 @@
                             $kbe_terms = get_terms('kbe_taxonomy', $kbe_args);
                             if($kbe_terms){
                         ?>
-                            <p><?php _e('Drag and drop items to customise the order of categories in WP Knowledgebase','kbe') ?></p>
+                            <p><?php _e('Drag and drop items to customise the order of categories in WP '.KBE_PLUGIN_TITLE,'kbe') ?></p>
                         
                             <ul id="kbe_order_sortable" class="kbe_admin_order">
                             <?php
@@ -117,7 +117,7 @@
                                                     ));
                             if($kbe_article_args->have_posts()){
                         ?>
-                            <p><?php _e('Drag and drop items to customise the order of articles in WP Knowledgebase','kbe') ?></p>
+                            <p><?php _e('Drag and drop items to customise the order of articles in WP '.KBE_PLUGIN_TITLE,'kbe') ?></p>
                             
                             <ul id="kbe_article_sortable" class="kbe_admin_order">
                             <?php
@@ -171,56 +171,6 @@
                         }
                     </script>
                 </div>
-            </div>
-            
-            <div class="kbe_admin_sidebar">
-            <table cellpadding="0" class="widefat donation" style="margin-bottom:10px; border:solid 2px #008001;" width="50%" valign="top">
-                <thead>
-                    <th scope="col">
-                        <strong style="color:#008001;"><?php _e('Help Improve This Plugin!','kbe') ?></strong>
-                    </th>
-        	</thead>
-      		<tbody>
-                    <tr>
-          		<td style="border:0;">
-                            <?php _e('Enjoyed this plugin? All donations are used to improve and further develop this plugin. Thanks for your contribution.','kbe') ?>
-                        </td>
-                    </tr>
-                    <tr>
-          		<td style="border:0;">
-                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-                            <input type="hidden" name="cmd" value="_s-xclick">
-                            <input type="hidden" name="hosted_button_id" value="A74K2K689DWTY">
-                            <input type="image" src="https://www.paypalobjects.com/en_AU/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal — The safer, easier way to pay online.">
-                            <img alt="" border="0" src="https://www.paypalobjects.com/en_AU/i/scr/pixel.gif" width="1" height="1">
-            		</form>
-                  	</td>
-                    </tr>
-                    <tr>
-          		<td style="border:0;"><?php _e('you can also help by','kbe') ?>
-                            <a href="http://wordpress.org/support/view/plugin-reviews/wp_knowledgebase" target="_blank">
-                                <?php _e('rating this plugin on wordpress.org','kbe') ?>
-                            </a>
-                      	</td>
-                    </tr>
-                </tbody>
-            </table>
-                
-            <table cellpadding="0" class="widefat" border="0">
-                <thead>
-                    <th scope="col"><?php _e('Need Support?','kbe') ?></th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="border:0;">
-                            <?php _e('Check out the','kbe') ?>
-                            <a href="http://enigmaplugins.com/documentation/" target="_blank"><?php _e('FAQs','kbe'); ?></a>
-                            <?php _e('and','kbe') ?>
-                            <a href="http://wordpress.org/support/plugin/wp_knowledgebase" target="_blank"><?php _e('Support Forums','kbe') ?></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
             </div>
             
             <?php

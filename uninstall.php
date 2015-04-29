@@ -9,6 +9,7 @@ if ( !defined( 'WP_UNINSTALL_PLUGIN' ) )
 	
 //=========> Delete Plugin Settings From options Table
 	delete_option('kbe_bgcolor');
+	delete_option('kbe_plugin_title');
 	delete_option('kbe_plugin_slug');
 	delete_option('kbe_article_qty');
 	delete_option('kbe_sidebar_home');
