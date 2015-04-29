@@ -57,7 +57,7 @@
                             </tr>
                             <tr>
                                 <td width="35%" valign="top">
-                                    <label><?php _e(KBE_PLUGIN_TITLE.' title','kbe'); ?></label>
+                                    <label><?php _e(KBE_PLUGIN_TITLE.' Title','kbe'); ?></label>
                                 </td>
                                 <td colspan="3">
                                     <input type="text" name="kbe_plugin_title" id="kbe_plugin_title" value="<?php echo get_option('kbe_plugin_title'); ?>">
@@ -65,7 +65,7 @@
                             </tr>
                             <tr>
                                 <td valign="top">
-                                    <label><?php _e('Knowledgebase search','kbe'); ?></label>
+                                    <label><?php _e(KBE_PLUGIN_TITLE.' Search','kbe'); ?></label>
                                 </td>
                                 <td width="15%">
                                 <input type="radio" name="kbe_search_setting" id="kbe_search_setting" value="1" <?php if(get_option('kbe_search_setting')=='1'){echo 'checked="checked"';} ?>>
@@ -79,7 +79,7 @@
                             </tr>
                             <tr>
                                 <td valign="top">
-                                    <label><?php _e('Knowledgebase breadcrumbs','kbe'); ?></label>
+                                    <label><?php _e(KBE_PLUGIN_TITLE.' Breadcrumbs','kbe'); ?></label>
                                 </td>
                                 <td>
                                 <input type="radio" name="kbe_breadcrumbs_setting" id="kbe_breadcrumbs_setting" value="1" <?php if(get_option('kbe_breadcrumbs_setting')=='1'){echo 'checked="checked"';} ?>>

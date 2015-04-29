@@ -1,6 +1,6 @@
 <?php
 /*
-  Plugin Name: FWM WP Knowledgebase
+  Plugin Name: FWM WP Support Centre
   Plugin URI: https://github.com/fastwebmedia/wp-knowledgebase
   Description: Simple and flexible knowledgebase plugin for WordPress
   Author: Fast Web Media
@@ -253,7 +253,7 @@ $kbe_tags = KBE_THEME_DIR.'/taxonomy-kbe_tags.php';
 $kbe_comment = KBE_THEME_DIR.'/kbe_comments.php';
 $kbe_search = KBE_THEME_DIR.'/kbe_search.php';
 
-if((!file_exists($kbe_style)) or (!file_exists($kbe_kbe))or
+if((!file_exists($kbe_kbe))or
     (!file_exists($kbe_single)) or (!file_exists($kbe_taxonomy)) or
     (!file_exists($kbe_tags)) or (!file_exists($kbe_comment)) or
     (!file_exists($kbe_archive)) or (!file_exists($kbe_search))){
@@ -335,7 +335,7 @@ function kbe_search_drop(){
             });
 
             function boxCloser(e){
-                if(e.target.id != 's'){
+                if(e.target.id !== 's'){
                     document.body.removeEventListener('click', boxCloser, false);
                     jQuery('#search-result').slideUp("slow");
                 }

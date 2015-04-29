@@ -12,8 +12,8 @@ function kbe_articles() {
     $kb_slug = get_option('kbe_plugin_slug');
     
     $labels = array(
-        'name'                  => 	__('Knowledgebase', 'kbe'),
-        'singular_name'         => 	__('Knowledgebase', 'kbe'),
+        'name'                  => 	__(KBE_PLUGIN_TITLE, 'kbe'),
+        'singular_name'         => 	__(KBE_PLUGIN_TITLE, 'kbe'),
         'all_items'             => 	__('Articles', 'kbe'),
         'add_new'               => 	__('New Article', 'kbe'),
         'add_new_item'          => 	__('Add New Article', 'kbe'),
@@ -43,7 +43,7 @@ function kbe_articles() {
         'capability_type'       => 	'post',
         'hierarchical'          => 	false,
         'menu_position'         => 	3,
-        'supports'              => 	array('title','editor','thumbnail','comments','tags'),
+        'supports'              => 	array('title','editor','thumbnail','tags'),
         'rewrite'               => 	$kbe_rewrite,
         'show_in_menu'          => 	true,
         'show_in_nav_menus'     => 	true,
