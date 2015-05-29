@@ -487,24 +487,26 @@ function kbe_show_tags(){
 }
 
 //=========> KBE Dynamic CSS
-add_action('wp_head', 'count_bg_color');
-function count_bg_color(){
-    ?>
-    <style type="text/css">
-        <?php
-            $kbe_bgcolor = get_option('kbe_bgcolor');
-        ?>
-        #kbe_content h2 span.kbe_count {
-            background-color: <?php echo $kbe_bgcolor; ?> !important;
-        }
-        .kbe_widget .kbe_tags_widget a{
-            text-decoration: none;
-            color: <?php echo $kbe_bgcolor; ?> !important;
-        }
-        .kbe_widget .kbe_tags_widget a:hover{
-            text-decoration: underline;
-            color: <?php echo $kbe_bgcolor; ?> !important;
-        }
-    </style>
-<?php
+if ( stristr($_SERVER["REQUEST_URI"], KBE_PLUGIN_SLUG) !== FALSE ){
+  add_action('wp_head', 'count_bg_color');
+  function count_bg_color(){
+      ?>
+      <style type="text/css">
+          <?php
+              $kbe_bgcolor = get_option('kbe_bgcolor');
+          ?>
+          #kbe_content h2 span.kbe_count {
+              background-color: <?php echo $kbe_bgcolor; ?> !important;
+          }
+          .kbe_widget .kbe_tags_widget a{
+              text-decoration: none;
+              color: <?php echo $kbe_bgcolor; ?> !important;
+          }
+          .kbe_widget .kbe_tags_widget a:hover{
+              text-decoration: underline;
+              color: <?php echo $kbe_bgcolor; ?> !important;
+          }
+      </style>
+  <?php
+  }
 }
