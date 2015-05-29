@@ -194,11 +194,53 @@ function kbe_plugin_menu() {
 }
 
 if ( stristr($_SERVER["REQUEST_URI"], KBE_PLUGIN_SLUG) !== FALSE ){
+  
   add_action('wp_print_scripts', 'kbe_live_search');
   function kbe_live_search(){
       wp_register_script('kbe_live_search', WP_KNOWLEDGEBASE.'js/jquery.livesearch.js');
       wp_enqueue_script('kbe_live_search');
   }
+  
+  function st_add_live_search () {
+    ?>
+      <script type="text/javascript">
+          $(document).ready(function() {
+              var kbe = $('#live-search #s').val();
+              $('#live-search #s').liveSearch({url: '<?php echo home_url(); ?>/?ajax=on&post_type=kbe_knowledgebase&s='});
+          });
+      </script>
+  <?php
+  }
+  add_action('wp_head', 'st_add_live_search');
+  
+  add_action('wp_head', 'kbe_search_drop');
+  function kbe_search_drop(){
+      ?>
+      <script type="text/javascript">
+          jQuery(document).ready(function() {
+              jQuery('#s').keyup(function() {
+                  jQuery('#search-result').slideDown("slow");
+              });
+          });
+  
+          jQuery(document).ready(function(e) {
+              jQuery('body').click(function(){
+                  jQuery('#search-result').slideDown("slow",function(){
+                      document.body.addEventListener('click', boxCloser, false);
+                  });
+              });
+  
+              function boxCloser(e){
+                  if(e.target.id !== 's'){
+                      document.body.removeEventListener('click', boxCloser, false);
+                      jQuery('#search-result').slideUp("slow");
+                  }
+              }
+          });
+      </script>
+  <?php
+  }
+  
 } 
 
 //=========> Enqueue plugin files
@@ -227,18 +269,6 @@ function load_all_jquery() {
         wp_enqueue_script($script);
     }
 }
-
-function st_add_live_search () {
-    ?>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var kbe = $('#live-search #s').val();
-            $('#live-search #s').liveSearch({url: '<?php echo home_url(); ?>/?ajax=on&post_type=kbe_knowledgebase&s='});
-        });
-    </script>
-<?php
-}
-add_action('wp_head', 'st_add_live_search');
 
 //=========> Move files from Plugin to Current Theme
 
@@ -316,34 +346,6 @@ function kbe_search_form(){
         </div>
     </div>
     <!-- /#live-search -->
-<?php
-}
-
-add_action('wp_head', 'kbe_search_drop');
-function kbe_search_drop(){
-    ?>
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            jQuery('#s').keyup(function() {
-                jQuery('#search-result').slideDown("slow");
-            });
-        });
-
-        jQuery(document).ready(function(e) {
-            jQuery('body').click(function(){
-                jQuery('#search-result').slideDown("slow",function(){
-                    document.body.addEventListener('click', boxCloser, false);
-                });
-            });
-
-            function boxCloser(e){
-                if(e.target.id !== 's'){
-                    document.body.removeEventListener('click', boxCloser, false);
-                    jQuery('#search-result').slideUp("slow");
-                }
-            }
-        });
-    </script>
 <?php
 }
 
