@@ -193,11 +193,13 @@ function kbe_plugin_menu() {
     add_submenu_page('edit.php?post_type=kbe_knowledgebase', 'Settings', 'Settings', 'manage_options', 'kbe_options', 'wp_kbe_options');
 }
 
-add_action('wp_print_scripts', 'kbe_live_search');
-function kbe_live_search(){
-    wp_register_script('kbe_live_search', WP_KNOWLEDGEBASE.'js/jquery.livesearch.js');
-    wp_enqueue_script('kbe_live_search');
-}
+if ( stristr($_SERVER["REQUEST_URI"], KBE_PLUGIN_SLUG) !== FALSE ){
+  add_action('wp_print_scripts', 'kbe_live_search');
+  function kbe_live_search(){
+      wp_register_script('kbe_live_search', WP_KNOWLEDGEBASE.'js/jquery.livesearch.js');
+      wp_enqueue_script('kbe_live_search');
+  }
+} 
 
 //=========> Enqueue plugin files
 add_action('admin_init', 'wp_kbe_scripts');
