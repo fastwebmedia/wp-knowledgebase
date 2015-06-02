@@ -194,38 +194,30 @@ function kbe_plugin_menu() {
 }
 
 if ( stristr($_SERVER["REQUEST_URI"], KBE_PLUGIN_SLUG) !== FALSE ){
-  
-  add_action('wp_print_scripts', 'kbe_live_search');
-  function kbe_live_search(){
-      wp_register_script('kbe_live_search', WP_KNOWLEDGEBASE.'js/jquery.livesearch.js');
-      wp_enqueue_script('kbe_live_search');
-  }
-  
-  function st_add_live_search () {
-    ?>
+
+  add_action('wp_footer', 'st_add_live_search');
+  function st_add_live_search () { ?>
+      <script type='text/javascript' src='<?php echo WP_KNOWLEDGEBASE.'js/jquery.livesearch.js' ?>'></script>
       <script type="text/javascript">
-          $(document).ready(function() {
-              var kbe = $('#live-search #s').val();
+          $(function(){
               $('#live-search #s').liveSearch({url: '<?php echo home_url(); ?>/?ajax=on&post_type=kbe_knowledgebase&s='});
           });
       </script>
   <?php
   }
-  add_action('wp_head', 'st_add_live_search');
-  
-  add_action('wp_head', 'kbe_search_drop');
-  function kbe_search_drop(){
-      ?>
+
+  add_action('wp_footer', 'kbe_search_drop');
+  function kbe_search_drop(){ ?>
       <script type="text/javascript">
-          jQuery(document).ready(function() {
-              jQuery('#s').keyup(function() {
-                  jQuery('#search-result').slideDown("slow");
+          $(function(e){
+              $('#s').on('keyup', function() {
+                  $('#search-result').slideDown("slow");
               });
           });
-  
-          jQuery(document).ready(function(e) {
-              jQuery('body').click(function(){
-                  jQuery('#search-result').slideDown("slow",function(){
+
+          $(function(e){
+              $('body').on('click', function(){
+                  $('#search-result').slideDown("slow",function(){
                       document.body.addEventListener('click', boxCloser, false);
                   });
               });
@@ -233,7 +225,7 @@ if ( stristr($_SERVER["REQUEST_URI"], KBE_PLUGIN_SLUG) !== FALSE ){
               function boxCloser(e){
                   if(e.target.id !== 's'){
                       document.body.removeEventListener('click', boxCloser, false);
-                      jQuery('#search-result').slideUp("slow");
+                      $('#search-result').slideUp("slow");
                   }
               }
           });
